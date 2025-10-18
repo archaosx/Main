@@ -89,17 +89,40 @@ typewriter("""
                                   ░░░░░▒░       ▒████-------------------------        
 """, 0.00001)
 typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + "Your name is " + name + " and your dead", 0.05)
-time.sleep(1)
+time.sleep(0.7)
 typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + "Kind of", 0.05)
-time.sleep(1)
+time.sleep(1.5)
 typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + "and you are in Tierra de los Muertos, Land of the Dead", 0.05)
-time.sleep(1)
-typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + "Under the Weeping Willow, your unconscious soul lays rest", 0.05)
-time.sleep(1)
+time.sleep(1.5)
+typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + "Under the Weeping Willow, your unconscious soul lays rest.", 0.05)
+time.sleep(1.5)
 typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + "-footsteps walk along the mirrored lake, floating off over you-", 0.05)
-time.sleep(1)
+time.sleep(1.5)
 typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + "-A voice...divine and calm-", 0.05)
-time.sleep(1)
-typewriter (name + "...Its time to WAKE UP!", 0.05)
+time.sleep(1.5)
+typewriter ("Being: "+ name + "...Its time to WAKE UP!", 0.05)
 time.sleep(1.5)
 typewriter ("-you wake up in a daze, you eyes wander up as you look at this radient figure before you-", 0.05)
+typewriter("-Her eyes glow with light and her skin looks as if your staring into the cosmos itself-", 0.05)
+typewriter("-as you look at your surroundings questions form in your mind")
+
+def start():
+    print("As you look around to your surroundings two questions form in your mind..", 0.05)
+    print("1. Where am I?")
+    print("2. Who are you?")
+    choice = input("Choose 1 or 2: ")
+    if choice == "1":
+        scenario_where_am_i()
+    elif choice == "2":
+        scenario_who_are_you()
+    else:
+        print("Gotta follow the rules here, Witch.")
+        start()
+
+def scenario_where_am_i():
+    print("Being: You are in Tierra de los Muertos, The Land of the Dead, where you once lived, long ago", 0.05)
+    print("Being: You were murdered by a rather sinister spell", 0.05)
+    print(name + ":" + "Wait what, no- I need to go back home")
+    print("Being: Home is far away, we are deep within the crossroads between realms")
+    print(name + ":" + "then I'll just break through these walls, between realms and deal with the consquences later")
+    print("being: you can't do that,")
