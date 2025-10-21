@@ -1,6 +1,7 @@
 import sys
 from colorama import Fore, Style, init
 import time, os, random
+import pygame
 
 init(autoreset=False)
 
@@ -222,4 +223,5 @@ typewriter("-The hooded figure waves their hand and chains made of water appear 
 time.sleep(1.5)
 typewriter(f"Hooded Figure: Go, and you will not mention a word to {name}", 0.05)
 time.sleep(1.5)
-typewriter("-The Hooded figure disappears in a firey -", 0.05)
+typewriter("-The Hooded figure disappears in ashy glowing mist -", 0.05)
+
