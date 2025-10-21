@@ -54,7 +54,7 @@ typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + "What is your name, little Witch: 
 name = input()
 typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + "What is your Title: "),0.05
 name2 = input()
-typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + "Welcome " + name + ", have a fun trip back to wherever you died!\n", 0.05)
+typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + f"Welcome {name}, have a fun trip back to wherever you died!\n", 0.05)
 time.sleep(1)
 stars = '.', ',', '`', '*', '|', '^', '+'
 for i in range(160):
@@ -62,7 +62,7 @@ for i in range(160):
     time.sleep(0.01)
 show_title()
 
-init(autoreset=False)
+print(Style.RESET_ALL)
 
 stars = '.', ',', '`', '*', '|', '^', '+'
 for i in range(210):
@@ -81,7 +81,7 @@ typewriter("""
                      ░██▓░▓▓▒█░█▒░▓▒▓▒▒░▓ ▓▓ ▓█ ██ ▒  ▓███ ▓░░▒▒▓▓░▒█ █▓▓█░▒██▒                     
      |               ▓█▒░▒░░█░▓ ▒ ░▒░▒░ ░░█▒▓   ███░ ▒█▒▓ ▓▓ ░▒▒░░▓░ ▓░█░░▒▒▒█▓           .           |
            .         ░ ▒█ ▓▓ ▒░█ ░▒ ░▒░  ▓░  ▒  ░████  ▓ ░▓  ░▓░ ▓░ ▓ ▒ ▓▓ █▒ ░                     
-                       █▓ ▒░ ▒ ▒ ░▒ ▒ ░░ ▓░       ████    ▓ ░░░░ ▒  ▒ ▒ ░▒ ▓█                       .
+                       █▓ ▒░ ▒ ▒ ░▒ ▒ ░░ ▓       ████    ▓ ░░░░ ▒  ▒ ▒ ░▒ ▓█                       .
       |               ░ ▒ █░ ░ ░    ▒ ░         ░████        ░ ░      ░  █ ░ ░                      
                        ░░░▓   █        |      ░░████      |       .         ▓░                         |
             |          ▓  ▒                    █████                     ▓  █             |          
@@ -92,11 +92,11 @@ typewriter("""
               ||||||||||||  ░░░░▒░▓ ░    ░▒░  ░▓▓▓▓-------░------▒░   ░░▒░░░                              
                                   ░░░░░▒░       ▒████-------------------------        
 """, 0.00001)
-typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + "Your name is " + name + " and you are dead.", 0.05)
+typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + f"Your name is {name} and you are dead.", 0.05)
 time.sleep(0.7)
 typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + "Almost.", 0.05)
 time.sleep(1.5)
-typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + "and you are in Tierra de los Muertos, Land of the Dead", 0.05)
+typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + "and you are in Tierra de los Muertos, The Land of the Dead", 0.05)
 time.sleep(1.5)
 typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + "Under the Weeping Willow, your unconscious soul lays rest.", 0.05)
 time.sleep(1.5)
@@ -110,18 +110,11 @@ typewriter ("-you wake up in a daze, you eyes wander up as you look at this radi
 typewriter("-Her eyes glow with light and her skin looks as if your staring into the cosmos itself-", 0.05)
 time.sleep(1.5)
 
+print(Style.RESET_ALL)
 def start():
-    print("As you look around to your surroundings two questions form in your mind..", 0.05)
+    typewriter("As you look around to your surroundings two questions form in your mind..", 0.05)
     print("1. Where am I?")
     print("2. Who are you?")
-    choice = input("Choose 1 or 2: ")
-    if choice == "1":
-        scenario_where_am_i()
-    elif choice == "2":
-        scenario_who_are_you()
-    else:
-        print("Gotta follow the rules here, Witch.")
-        start()
 
 def scenario_where_am_i():
     typewriter("Being: You are in Tierra de los Muertos, The Land of the Dead, where you once lived, long ago", 0.05)
@@ -167,29 +160,42 @@ def scenario_who_are_you():
     time.sleep(1.5)
 start()
 
+choice = input("Choose 1 or 2: ")
+try:
+    if choice == "1":
+        scenario_where_am_i()
+
+    elif choice == "2":
+        scenario_who_are_you()
+
+else:
+        print("Gotta follow the rules here, Witch.")
+        start()
+
 def next_scene():
     typewriter("Diana: Join us, Ascend the ranks and Surrender to the Hand of Hecate and eventually take up my mantle", 0.05)
     typewriter("Diana: OR")
     typewriter("Battle your way to the top, and claw your way out of Hell and rejoin your friends in the battle against Leto", 0.05)
     print("\nOptions")
-    print("1. Accept the offer")
-    print("2. Reject the offer")
-    choice = input("\nChoose 1 or 2")
+    print("Yes. Accept the offer")
+    print("No. Reject the offer")
 
-    if choice == "1":
+choice = input("\nChoose Yes or No")
+try:
+    if choice == "Yes":
         typewriter(name + ": I accept your offer, Diana", 0.05)
         time.sleep(1.5)
         typewriter("-Diana smiles.-\n The Land Inbetween is the perfect place for one who wields your power, Little Witch", 0.05)
-        typewriter("perfect for " + name2, 0.05)
+        typewriter(f"perfect for {name2}", 0.05)
         typewriter("You ascend to The Land Inbetween, your mortal journey ends here..Coward", 0.05)
         time.sleep(1.5)
         sys.exit()
-    elif choice =="2":
+    elif choice =="No":
         typewriter(name + ": I fight to the end Diana and technically I am at the end, so now I fight to the beginning", 0.05)
         time.sleep(1.5)
         typewriter("-Diana smiles.-\n then take this. -she waves her hand and a pearl entrusted chain appears on your neck-", 0.05)
         time.sleep(1.5)
-        typewriter("Diana: This will help you, now Dive, Dive until down becomes up", 0.05)
+        typewriter("Diana: This will help you against the beasts, now Dive, Dive until down becomes up", 0.05)
         time.sleep(1.5)
         typewriter("-You dive into the lake, and swim through the merky water as the light disappears-", 0.05)
         time.sleep(1.5)
@@ -198,14 +204,15 @@ def next_scene():
         typewriter("Diana: swim until...your doom...", 0.05)
         time.sleep(1.5)
         typewriter("-The water becomes still..-", 0.05)
-    else:
+except ValueError:
         print("Gotta follow the rules here, Witch.")
+
 
 typewriter("Diana: How did you make me do that.", 0.05)
 time.sleep(1.5)
 typewriter("-A hooded figure steps out from behind the willow tree-", 0.05)
 time.sleep(1.5)
-typewriter("Hooded Figure: You may be the Goddess of Magic. \nbut not mine, you can go now", 0.05)
+typewriter("Hooded Figure: You may be the Goddess of Magic. \nbut not the Goddess of mine. \nYou can go now, Little Witch", 0.05)
 time.sleep(1.5)
 typewriter("Diana: Where are my sisters", 0.05)
 time.sleep(1.5)
@@ -213,4 +220,6 @@ typewriter("Hooded Figure: You get them, when I say.", 0.05)
 time.sleep(1.5)
 typewriter("-The hooded figure waves their hand and chains made of water appear around Diana's hands and turn back into liquid-", 0.05)
 time.sleep(1.5)
-typewriter("Hooded Figure: Go, and you will not mention a word to " + name, 0.05)
+typewriter(f"Hooded Figure: Go, and you will not mention a word to {name}", 0.05)
+time.sleep(1.5)
+typewriter("-The Hooded figure disappears in a firey -", 0.05)
