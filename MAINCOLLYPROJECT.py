@@ -1,7 +1,10 @@
 import sys
+import tkinter
+
 from colorama import Fore, Style, init
 import time, os, random
 import pygame
+import tkinter as tk
 
 init(autoreset=False)
 
@@ -159,7 +162,7 @@ def scenario_who_are_you():
     time.sleep(1.5)
     typewriter(name + ": What kind of offer?", 0.05 )
     time.sleep(1.5)
-start()
+
 
 choice = input("Choose 1 or 2: ")
 try:
@@ -169,9 +172,9 @@ try:
     elif choice == "2":
         scenario_who_are_you()
 
-else:
+    else:
         print("Gotta follow the rules here, Witch.")
-        start()
+
 
 def next_scene():
     typewriter("Diana: Join us, Ascend the ranks and Surrender to the Hand of Hecate and eventually take up my mantle", 0.05)
@@ -213,7 +216,7 @@ typewriter("Diana: How did you make me do that.", 0.05)
 time.sleep(1.5)
 typewriter("-A hooded figure steps out from behind the willow tree-", 0.05)
 time.sleep(1.5)
-typewriter("Hooded Figure: You may be the Goddess of Magic. \nbut not the Goddess of mine. \nYou can go now, Little Witch", 0.05)
+typewriter("Hooded Figure: You may be the Goddess of Magic. \nbut not the Goddess of mine. \nYou can go now, Little Witch ;)", 0.05)
 time.sleep(1.5)
 typewriter("Diana: Where are my sisters", 0.05)
 time.sleep(1.5)
@@ -225,3 +228,37 @@ typewriter(f"Hooded Figure: Go, and you will not mention a word to {name}", 0.05
 time.sleep(1.5)
 typewriter("-The Hooded figure disappears in ashy glowing mist -", 0.05)
 
+width = 600
+height = 200
+BUBBLE_CHARS = ['0', 'O', 'o', 'C', '@']
+speed = 10
+delay = 50
+NUM_BUBBLES = 12
+
+root = tk.Tk()
+root.title = "Bubble Swipe Animation"
+canvas = tk.Canvas(root, width=width, height=height, bg='black')
+canvas.pack()
+
+bubbles = []
+for i in range(NUM_BUBBLES):
+    char = random.choice(BUBBLE_CHARS)
+    x = -random.randint(0, width)
+    y = height // 2 + random.randint(-40, 40)
+    text = canvas.create_text(x, y, text=char, font=('Arial', 20, 'bold'), fill='white')
+    bubbles.append(text)
+
+def animate():
+    for bubble in bubbles:
+        x, y = canvas.coords(bubble)
+        x += speed
+        if x > width + 20:
+            x = 20
+            y = height // 2 + random.randint(-40, 40)
+            canvas.itemconfig(bubble, text=random.choice (BUBBLE_CHARS))
+        canvas.coords(bubble, x, y)
+    root.after(delay, animate)
+
+animate()
+root.mainloop()
+start()
