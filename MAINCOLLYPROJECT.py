@@ -1,10 +1,7 @@
 import sys
-import tkinter
-
 from colorama import Fore, Style, init
 import time, os, random
-import pygame
-import tkinter as tk
+
 
 init(autoreset=False)
 
@@ -20,21 +17,41 @@ def typewriter(text, speed=0.05):
         time.sleep(speed)
     print()
 def show_title():
-    title = r"""
-
-   ▄████████    ▄████████     ███     ███    █▄     ▄████████ ███▄▄▄▄  
-  ███    ███   ███    ███ ▀█████████▄ ███    ███   ███    ███ ███▀▀▀██▄
-  ███    ███   ███    █▀     ▀███▀▀██ ███    ███   ███    ███ ███   ███
- ▄███▄▄▄▄██▀  ▄███▄▄▄         ███   ▀ ███    ███  ▄███▄▄▄▄██▀ ███   ███
-▀▀███▀▀▀▀▀   ▀▀███▀▀▀         ███     ███    ███ ▀▀███▀▀▀▀▀   ███   ███
-▀███████████   ███    █▄      ███     ███    ███ ▀███████████ ███   ███
-  ███    ███   ███    ███     ███     ███    ███   ███    ███ ███   ███
-  ███    ███   ██████████    ▄████▀   ████████▀    ███    ███  ▀█   █▀ 
-  ███    ███                                       ███    ███          
+    title = r"""        |            .                                                                                            
+           ▓▓                         .      ^     .           |            .                                                               
+           ▓█▓▓                                                                     .      ^     .                            
+          ▓▓▓▓▓▓▓              .      ^     .            |                   .      ^     .                    |            .                                          
+         ░▓▓▓▓▓▓▓▓▓                       ░▒▒▒                |            .                                      
+         ▓▓▓▓▓▓▓▓▓▓▓▓              ░▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█▓▓▒░                        .      ^     .                               
+        ▓▓▓▓▓▓▓▓▓▓▓▓▓█▓▓░    ░▓█▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▓▓█▓▓▓▓▓▓▓▓▓░                                      
+         ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█▓▓▓▓▓█▓▓▓▓░ ▓▓█▓▓▓▓▓▓▓▓                                     |            .
+           ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█▓▓▓▓▓▓▓█▓▓▓░ ░░   ▓▓▓▓▒  ░        |            .                         
+             ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░  ░░░▒░  ░▓▓▓▓▓  ▓▓░  ▓▓▓█  ▓▓▓▓                                  .      ^     .       
+               ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░▓▓▓▓▓▓▓█▒    ▓▓▓▓█       ▓▓▓▓   ▒▓▓▓▒▒▓                        
+                 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓  ▓▓▓▓ ░▓▓▓░ █▓    ▓▓▓▓▓▓         |            .                      
+                   ▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ▒▓█▓        ▒▓▓ ▒▓▒                             
+                      ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░░    ▓▓▓         ▓▓▓▓▓▒                              .      ^     .          
+                         ▒▓▓▓▓▓▓▓▓▓▓▓▓▒▒               ▓ ▒            ▒▓▓▓░         |            .               
+   |            .                                      ▒▓                                          
+         .            |          .          |          .          .              |    ^           .
+    
+         .            ▄████████    ▄████████     ███     ███    █▄     ▄████████ ███▄▄▄▄      .                   .
+   |          .       ███    ███ | ███    ███ ▀█████████▄ ███    ███   ███    ███ ███▀▀▀██▄                |
+    ^       .         ███    ███   ███    █▀     ▀███▀▀██ ███    ███   ███    ███ ███   ███=        |                 
+             |       ▄███▄▄▄▄██▀  ▄███▄▄▄         ███   ▀ ███    ███  ▄███▄▄▄▄██▀ ███   ███-              .      ^     .
+   .              .  ▀▀███▀▀▀▀▀   ▀▀███▀▀▀     .  ███  .  ███    ███ ▀▀███▀▀▀▀▀   ███   ███-      .                |
+         .           ▀███████████   ███    █▄     ███     ███    ███ ▀███████████ ███   ███
+ |          .         ███    ███   ███    ███     ███     ███    ███   ███    ███ ███   ███          ^     |       ^
+         ^            ███    ███   ██████████    ▄████▀   ████████▀    ███    ███  ▀█   █▀     |            .
+               |      ███    ███     |     .               ^           ███    ███                                .
 """
-
-
     fade_steps = [
+        Style.NORMAL + Fore.LIGHTRED_EX,
+        Style.DIM + Fore.LIGHTBLACK_EX,
+        Style.NORMAL + Fore.LIGHTWHITE_EX,
+        Style.NORMAL + Fore.WHITE,
+        Style.BRIGHT + Fore.RED,
+        Style.BRIGHT + Fore.LIGHTRED_EX,
         Style.NORMAL + Fore.LIGHTRED_EX,
         Style.DIM + Fore.LIGHTBLACK_EX,
         Style.NORMAL + Fore.LIGHTWHITE_EX,
@@ -70,31 +87,37 @@ print(Style.RESET_ALL)
 
 stars = '.', ',', '`', '*', '|', '^', '+'
 for i in range(210):
-    print(random.choice(stars).rjust(random.randint(1, 140)))
+    print(random.choice(stars).rjust(random.randint(5, 140)))
     time.sleep(0.01)
-typewriter("""
-                                .     ▒░▓▒▓██░░▒ ░  ▓░░██▓▒▒░░                        |              
-        .            |              ░░▒▒█▓████████▒███████████░▒░                                    |
-   |                            |  ░█▓▓███████████████████████▓█░    ░             *            .    
-                            ░░█▒▓▓██████████████▓██▒██▓████████████▓▒▓ ░                            
-       .        +          ░▓▒ ▒█████████▓█▒▓▒█▒████▒███▒▒░███████████▒ ▓▒▒                          *
-                        ▒░█████▒▒████████▓▓██▒ ▒ █ █▓▓░██ ▓▒▓██████▒▒█████░▒                        
-               |      ░░██▓█████████▒██░▓▒ ░ ██  █ ░ ▓░█ █▒██▓████████▓███░░            |           
-                     ░█▒█▓█████████▓██▒▒░▒  █▒█ █ █    ████▒███▓█▒████████▓███░                             |
-            .        ▒▒██▓▓█▒███▓▒░█████▒ ██▓░█ ░ █   ▒ █  ▓▒▓███ ▒████▒█▓▓██▒▒                 +    
-                     ░██▓░▓▓▒█░█▒░▓▒▓▒▒░▓ ▓▓ ▓█ ██ ▒  ▓███ ▓░░▒▒▓▓░▒█ █▓▓█░▒██▒                     
-     |               ▓█▒░▒░░█░▓ ▒ ░▒░▒░ ░░█▒▓   ███░ ▒█▒▓ ▓▓ ░▒▒░░▓░ ▓░█░░▒▒▒█▓           .           |
-           .         ░ ▒█ ▓▓ ▒░█ ░▒ ░▒░  ▓░  ▒  ░████  ▓ ░▓  ░▓░ ▓░ ▓ ▒ ▓▓ █▒ ░                     
-                       █▓ ▒░ ▒ ▒ ░▒ ▒ ░░ ▓       ████    ▓ ░░░░ ▒  ▒ ▒ ░▒ ▓█                       .
-      |               ░ ▒ █░ ░ ░    ▒ ░         ░████        ░ ░      ░  █ ░ ░                      
-                       ░░░▓   █        |      ░░████      |       .         ▓░                         |
-            |          ▓  ▒                    █████                     ▓  █             |          
-                       ▒       ░▒▒▒▓███▓████████████████░░▓██████▒░▓        ▒                       .
-    ------------------- --░░▓██████████████████████████████████████████▒░----------------------                           
-           --------------   ░░▒▒███████████████████████████████████▒░---------------------                               
-     --------------------------- - ▓▓█░▓░▒▒▒ ▓██████▒ ░░ ░▓▓█▒▓▓ ░------------                                 
-              ||||||||||||  ░░░░▒░▓ ░    ░▒░  ░▓▓▓▓-------░------▒░   ░░▒░░░                              
-                                  ░░░░░▒░       ▒████-------------------------        
+typewriter("""                     .                             |          ^
+                                       ░▒▓███▒ ░░░██████▒░▒▒░                .        +               |
+   .                    .          ▒▓██████████████████████ ░▒▓█▓▓▒   |                     .          
+                   .              ▒▒░▓████████████████████████▓▓░ ░                '                 .           ^
+        .           .       ░▒▒████████▒██████████████████████████████████▓          .                      
+             .           ▓█░███████████████████████████████████████████▓░░░      |           +       *      .
+                    ░█████████████████████████████████████████████████▓███████                 |
+             .     ░█▓▓██████████████████████████████████████████████████████          .          *
+        ^         ░ ▓██░██████████████████▓████░████████████████████████████▓░                    .
+  .            ░██▓█████████████████████████▓▒█▓██ █▒███████████████████████████▒██                          .
+              ▒███████████████████████▓██▓▒██▒▓▓▒ ▒█ ▓█░████████████████████▒  ▓ ░▒        |      |
+         |     █  ███████████████████████▓ █▒▓██▓█ ░  ▒█▓█▒██████████████████████░                   .         '
+               ██████████████████████▓▒░░ █   ▓ ▓██  █░ ▓▒█░█████████████████████▒░    .             
+            █▓▒███████████████████████▓█▓ ▒█  ▓▒▒█  █  █▒░█ █▓░██████████████████░▒▒              |              .
+    .         ▒████████████████████████▓█ ▓  █░░█  ██▒    ▒█ ▓████████████████████▒   '              ^
+            ▓▓████████████████████▒▓▓█ █  ████    ██      ██▓▓░█░██▓██▓█▓█▒███████▓▓                .
+             ▓███████▓██████████▓█▓▒▓▓ █▓   ██░ ░███     ███▓▓   ▓ ▒█░██░█▒▓▓█████▓█▒       |               .       |
+    .         ███▒▓██▓▒████ ██▒██▒█▒ █▒ █░ ▒██████▒     ███        █░██░▓▒░▓██▒██▒▓▓     .            .
+       ^      ▒░█░▒██▓░███░▓██░█▓▒█░ █▒ ░    ████░   ▒████     .     █▓ ▒░░█░▓░█▒█░▒             +              .
+         .    ░▓ ░██▒░▓██ ▓▓█░█▓ █  ▓░     .  ████▓███▓             ░█   ░█ ▓░█░█       '    .        .               ^
+               ▓  ██░ ▓░  ░░█ ▓▓ █           ░█████░        ░██▒     █        █ ▓               .    
+                 ░██  ▒    ░█ ░▓   ▓████     ███████▒  ▓███▓▒    |            █       *              .           .
+      .             ▓██████░█░████▓████████████████████████████████████░█████░                      
+              ▒█▓▓██████████▓██████▒█ ▒██████░ ▒███████████████████████████████▓░.........|..........                   
+                   ██████████████████████████████████████████████████▓██████.............                  '
+ ____________________  █████████▓░▒▒▓▓█████████████████████████▓▒  ░▒▓███.....................'...                   '   
+__________________▒▓▓█▓▓▒     ▒▓██    ████████_______________▒░▒▒........    ████.....................            
+             _________________________________________________________________________________________      '         
+                   ________________________________________________________________________                                                                                                                                                                                 
 """, 0.00001)
 typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + f"Your name is {name} and you are dead.", 0.05)
 time.sleep(0.7)
@@ -113,73 +136,35 @@ time.sleep(1.5)
 typewriter ("-you wake up in a daze, you eyes wander up as you look at this radient figure before you-", 0.05)
 typewriter("-Her eyes glow with light and her skin looks as if your staring into the cosmos itself-", 0.05)
 time.sleep(1.5)
-
 print(Style.RESET_ALL)
-def start():
-    typewriter("As you look around to your surroundings two questions form in your mind..", 0.05)
-    print("1. Where am I?")
-    print("2. Who are you?")
-
-def scenario_where_am_i():
-    typewriter("Being: You are in Tierra de los Muertos, The Land of the Dead, where you once lived, long ago", 0.05)
-    time.sleep(1.5)
-    typewriter("Being: You were murdered by a rather sinister spell cast by my sister, Leto.", 0.05)
-    time.sleep(1.5)
-    typewriter(name + ": Wait what, no- I need to go back home", 0.05)
-    time.sleep(1.5)
-    typewriter("Being: Home is far away, we are deep within the crossroads between realms", 0.05)
-    time.sleep(1.5)
-    typewriter(name + ": then why can't i just force my way out", 0.05)
-    time.sleep(1.5)
-    typewriter("being: YOU CANT!-,", 0.05)
-    time.sleep(1.5)
-    typewriter(name + ": why", 0.05)
-    time.sleep(1.5)
-    typewriter("Being: This place contains some of the most vile creatures, unable to escape, unlike you", 0.05)
-    time.sleep(1.5)
-    typewriter("Being: And you have no control over your power output whilst dead, if you break out you risk letting them all out.", 0.05)
-    time.sleep(1.5)
-    typewriter(name + ": so how do I get out-", 0.05)
-    time.sleep(1.5)
-    typewriter("Being: before we get to that I want to make you an offer", 0.05)
-    time.sleep(1.5)
-    typewriter(name + ": What kind of offer?", 0.05)
-
-def scenario_who_are_you():
-    typewriter("Diana: You know us as the Triple Goddess, Past, Present and Future intertwined into one magical being", 0.05)
-    time.sleep(1.5)
-    typewriter(name + ": Hecate, The Goddess of Magic", 0.05)
-    time.sleep(1)
-    typewriter("Diana: You however may call us Diana", 0.05)
-    time.sleep(1)
-    typewriter(name + ": Where are the other two? The older versions of you.", 0.05)
-    time.sleep(1.5)
-    typewriter("Diana: They may not be present, but they are always with me")
-    time.sleep(1.5)
-    typewriter(name + ": Why are you here, have you come to stop me cheat death again?" )
-    time.sleep(1.5)
-    typewriter("Diana: I want to make you an offer", 0.05)
-    time.sleep(1.5)
-    typewriter(name + ": What kind of offer?", 0.05 )
-    time.sleep(1.5)
-
-
-choice = input("Choose 1 or 2: ")
-try:
-    if choice == "1":
-        scenario_where_am_i()
-
-    elif choice == "2":
-        scenario_who_are_you()
-
-    else:
-        print("Gotta follow the rules here, Witch.")
-
+typewriter("Who are you?", 0.05)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"Diana: You know us as the Triple Goddess, Past, Present and Future intertwined into one magical being", 0.05)
+time.sleep(1.5)
+print(Style.RESET_ALL)
+typewriter(name + ": Hecate.", 0.05)
+time.sleep(1)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"Diana: You however may call us Diana", 0.05)
+time.sleep(1)
+print(Style.RESET_ALL)
+typewriter(name + ": Where are the other two? The other versions of you.", 0.05)
+time.sleep(1.5)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"Diana: They may not be present, but they are always with me")
+time.sleep(1.5)
+print(Style.RESET_ALL)
+typewriter(name + ": Why are you here?" )
+time.sleep(1.5)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"Diana: I want to make you an offer", 0.05)
+time.sleep(1.5)
+print(Style.RESET_ALL)
+typewriter(name + ": What kind of offer?", 0.05 )
+time.sleep(1.5)
 
 def next_scene():
-    typewriter("Diana: Join us, Ascend the ranks and Surrender to the Hand of Hecate and eventually take up my mantle", 0.05)
+    typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"Diana: Join us, Ascend the ranks and reside in my realm", 0.05)
+    typewriter(" and be held in such high a stature you'd be worshipped.", 0.05)
     typewriter("Diana: OR")
-    typewriter("Battle your way to the top, and claw your way out of Hell and rejoin your friends in the battle against Leto", 0.05)
+    typewriter("Battle your way to the light, claw your way out of Hell and rejoin your friends in the battle against Leto", 0.05)
+    typewriter("I must warn you, while dead your weak, your power is determined by your will")
     print("\nOptions")
     print("Yes. Accept the offer")
     print("No. Reject the offer")
@@ -187,31 +172,35 @@ def next_scene():
 choice = input("\nChoose Yes or No")
 try:
     if choice == "Yes":
+        print(Style.RESET_ALL)
         typewriter(name + ": I accept your offer, Diana", 0.05)
         time.sleep(1.5)
-        typewriter("-Diana smiles.-\n The Land Inbetween is the perfect place for one who wields your power, Little Witch", 0.05)
+        typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-Diana smiles.-\n The Land Inbetween is the perfect place for one who wields your power, Little Witch", 0.05)
         typewriter(f"perfect for {name2}", 0.05)
         typewriter("You ascend to The Land Inbetween, your mortal journey ends here..Coward", 0.05)
         time.sleep(1.5)
         sys.exit()
     elif choice =="No":
-        typewriter(name + ": I fight to the end Diana and technically I am at the end, so now I fight to the beginning", 0.05)
+        print(Style.RESET_ALL)
+        typewriter(name + ": I fight to the end Diana and technically I am at the end, so now I gotta fight to the beginning. No matter my power", 0.05)
         time.sleep(1.5)
-        typewriter("-Diana smiles.-\n then take this. -she waves her hand and a pearl entrusted chain appears on your neck-", 0.05)
+        typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-Diana smiles.-\n then take this. -she waves her hand and a pearl entrusted chain appears on your neck-", 0.05)
         time.sleep(1.5)
-        typewriter("Diana: This will help you against the beasts, now Dive, Dive until down becomes up", 0.05)
+        typewriter("Diana: This will help you against the demons down there, now Dive, Dive until down becomes up", 0.05)
         time.sleep(1.5)
         typewriter("-You dive into the lake, and swim through the merky water as the light disappears-", 0.05)
         time.sleep(1.5)
         typewriter("Diana: swim until light becomes a simple memory", 0.05)
         time.sleep(1.5)
-        typewriter("Diana: swim until...your doom...", 0.05)
-        time.sleep(1.5)
         typewriter("-The water becomes still..-", 0.05)
+        time.sleep(1.5)
+        typewriter("Diana: swim until...your doom.", 0.05)
+        time.sleep(1.5)
 except ValueError:
         print("Gotta follow the rules here, Witch.")
 
-
+typewriter("-A red warping pulse reveals chains made from water around diana's hands and head connecting to the lake-", 0.05)
+time.sleep(1.5)
 typewriter("Diana: How did you make me do that.", 0.05)
 time.sleep(1.5)
 typewriter("-A hooded figure steps out from behind the willow tree-", 0.05)
@@ -222,43 +211,18 @@ typewriter("Diana: Where are my sisters", 0.05)
 time.sleep(1.5)
 typewriter("Hooded Figure: You get them, when I say.", 0.05)
 time.sleep(1.5)
-typewriter("-The hooded figure waves their hand and chains made of water appear around Diana's hands and turn back into liquid-", 0.05)
+typewriter("-The hooded figure waves their hand and the chains disperse back into water-", 0.05)
 time.sleep(1.5)
-typewriter(f"Hooded Figure: Go, and you will not mention a word to {name}", 0.05)
+typewriter(f"Hooded Figure: Now Go, and you will not mention a word to {name}", 0.05)
 time.sleep(1.5)
 typewriter("-The Hooded figure disappears in ashy glowing mist -", 0.05)
 
-width = 600
-height = 200
-BUBBLE_CHARS = ['0', 'O', 'o', 'C', '@']
-speed = 10
-delay = 50
-NUM_BUBBLES = 12
-
-root = tk.Tk()
-root.title = "Bubble Swipe Animation"
-canvas = tk.Canvas(root, width=width, height=height, bg='black')
-canvas.pack()
-
-bubbles = []
-for i in range(NUM_BUBBLES):
-    char = random.choice(BUBBLE_CHARS)
-    x = -random.randint(0, width)
-    y = height // 2 + random.randint(-40, 40)
-    text = canvas.create_text(x, y, text=char, font=('Arial', 20, 'bold'), fill='white')
-    bubbles.append(text)
-
-def animate():
-    for bubble in bubbles:
-        x, y = canvas.coords(bubble)
-        x += speed
-        if x > width + 20:
-            x = 20
-            y = height // 2 + random.randint(-40, 40)
-            canvas.itemconfig(bubble, text=random.choice (BUBBLE_CHARS))
-        canvas.coords(bubble, x, y)
-    root.after(delay, animate)
-
-animate()
-root.mainloop()
-start()
+Bubbles = '0', 'o', '0', '*', '@', '^', '%'
+for i in range(210):
+    print(random.choice(Bubbles).rjust(random.randint(5, 300)))
+    time.sleep(0.01)
+typewriter("-The light from the surface disappears, bioluminescence light your way along the murky waters-", 0.05)
+time.sleep(1.5)
+typewriter("-You swim into the caverns underwater and you see a women, sitting on the rock bed-", 0.05)
+time.sleep(1.5) 
+typewriter("--", 0.05)
