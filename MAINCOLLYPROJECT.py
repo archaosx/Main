@@ -2,7 +2,7 @@ import sys
 from colorama import Fore, Style, init, Cursor
 import time, os, random
 import shutil
-
+import copy
 
 init(autoreset=False)
 
@@ -18,7 +18,7 @@ def typewriter(text, speed=0.05):
         time.sleep(speed)
     print()
 
-def slash_animation(art, delay=0.04, slash_char='/'):
+def slash_animation(art, delay=0.04, slash_char='}'):
     lines = art.strip().splitlines()
     height = len(lines)
     width = max(len(line) for line in lines)
@@ -47,7 +47,7 @@ def show_title():
                             ░▒░                  ░▒                   ░░░░░░░                       
                            ░▒                     ░▒           ░▓███████▓▓███████▓░                 
                           ░▒              ░░      ░░       ░▒███░                ▒███░              
-                          ░░   ░▓█▓▒▓▓░   ░░     ░░      ░█▓░       ░░░░░░░░░       ░██░            
+                          ░░   ░▓█      ░░     ░░      ░█▓░       ░░░░░░░░░       ░██░            
                            ░   █░       ▒     ░░░       ▒▓░     ▒██▓░░       ░░▒██▒░   ░█░           
                             ░▒ ▒▓       ░░              ░░   ░█▓░░                 ░░█▓  ░█░          
                              ░░ █░                       ░▒█░    ░░▒▓▓████▓▒░░░        ▒█ ░░▒          
@@ -113,6 +113,16 @@ Player_Powers = {
     "Shield Charge": ((10, 50), "Your defence used as your offence"),
     "Heal": ((-10, -25), "Your healing but not as quick")
 }
+
+Player_Original_Powers = {
+    "Concussive_Blast": ((70, 100), "A devastating blow!"),
+    "Chaotic_Cleave": ((80, 120), "Reality tearing!"),
+    "Absorb": ((50, 100), "They don't deserve their power, take it..."),
+    "Heal": ((-70, -600), "Your wounds heal!"),
+
+}
+Player_Original_Powers_ = copy.deepcopy(Player_Powers)
+
 # Scylla | Boss 1 Stats
 Scylla_Health = 600 # she is immortal and regenerates quickly
 Scylla_Max_Health = 600
@@ -129,6 +139,7 @@ Scylla_Powers = {
 Dark_Nereids_Health = 400 # she is immortal and regenerates quickly
 Dark_Nereids_Max_Health = 400
 
+
 Dark_Nereids_Powers = {
     "Screech of the Punished": ((100, 130), " Summon the tortured screams of the fallen in those waters"),
     "Aquatic Rage": ((60, 80), "Torrents and whirlpools"),
@@ -144,7 +155,8 @@ for i in range(210):
     print(random.choice(stars).rjust(random.randint(0, 140)))
     time.sleep(0.01)# this repeats the chosen symbols at the selected range
 
-slash_animation(show_title)
+slash_animation(show_title())
+
 
 print(Style.RESET_ALL)
 
@@ -225,69 +237,73 @@ typewriter(Style.BRIGHT + Fore.LIGHTMAGENTA_EX +"Diana: Join us, Ascend the rank
 typewriter(" and be held in such high a stature you'd be worshipped.", 0.05)
 typewriter("Diana: OR")
 typewriter("Battle your way to the light, claw your way out of Hell and rejoin your friends in the War", 0.05)
-typewriter("I must warn you, while dead your weak, your power is determined by your will")
+typewriter("I must warn you, while dead your weak, your power is determined by your will.")
 print("\nOptions")
 print("Yes. Accept the offer")
 print("No. Reject the offer")
 
+
 choice = input("\nChoose yes or no").strip().lower()
 if choice == "yes":
-        print(Style.RESET_ALL)
-        typewriter(Player + ": I accept your offer, Diana", 0.05)
-        time.sleep(1.5)
-        typewriter(Style.BRIGHT + Fore.LIGHTMAGENTA_EX +"-Diana smiles.-\n The Land In between is the perfect place for one who wields your power, Little Witch", 0.05)
-        typewriter(f"perfect for {Player_Title}", 0.05)
-        typewriter("You ascend to The Land In between, your mortal journey ends here..Coward", 0.05)
-        time.sleep(1.5)
-        sys.exit()
+    print(Style.RESET_ALL)
+    typewriter(Player + ": I accept your offer, Diana", 0.05)
+    time.sleep(1.5)
+    typewriter(Style.BRIGHT + Fore.LIGHTMAGENTA_EX +"-Diana smiles.-\n The Land In between is the perfect place for one who wields your power, Little Witch", 0.05)
+    typewriter(f"perfect for {Player_Title}", 0.05)
+    typewriter("You ascend to The Land In between, your mortal journey ends here..Coward", 0.05)
+    time.sleep(1.5)
+    sys.exit()
 elif choice =="no":
-        typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"Guess I got to pick for you",0.06)
-        time.sleep(1.5)
-        print(Style.RESET_ALL)
-        typewriter(Player + ": I fight to the end Diana and technically I am at the end, so now I gotta fight to the beginning. No matter my power", 0.05)
-        time.sleep(1.5)
-        typewriter(Style.BRIGHT + Fore.LIGHTMAGENTA_EX +"-Diana nods.-\n then take this. -she waves her hand and a pearl entrusted chain appears on your neck-", 0.05)
-        time.sleep(1.5)
-        typewriter("Diana: This will help you against the demons down there, now Dive, Dive until down becomes up", 0.05)
-        time.sleep(1.5)
-        typewriter("-You dive into the lake, and swim through the merky water as the light disappears-", 0.05)
-        time.sleep(1.5)
-        typewriter("Diana: swim until light becomes a simple memory", 0.05)
-        time.sleep(1.5)
-        typewriter("-The water becomes still..-", 0.05)
-        time.sleep(1.5)
-        typewriter("Diana: swim until...your doom.", 0.05)
-        time.sleep(1.5)
+    typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"Guess I got to pick for you",0.06)
+    time.sleep(1.5)
+    print(Style.RESET_ALL)
+    typewriter(Player + ": I fight to the end Diana and technically I am at the end, so now I gotta fight to the beginning. No matter my power", 0.05)
+    time.sleep(1.5)
+    typewriter(Style.BRIGHT + Fore.LIGHTMAGENTA_EX +"-Diana nods.-\n then take this. -she waves her hand and a pearl entrusted chain appears on your neck-", 0.05)
+    time.sleep(1.5)
+    typewriter(Style.BRIGHT + Fore.LIGHTMAGENTA_EX +"Diana: This will help you against the demons down there, now Dive, Dive until down becomes up", 0.05)
+    time.sleep(1.5)
+    typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-You dive into the lake, and swim through the merky water as the light disappears-", 0.05)
+    time.sleep(1.5)
+    typewriter(Style.BRIGHT + Fore.LIGHTMAGENTA_EX +"Diana: swim until light becomes a simple memory", 0.05)
+    time.sleep(1.5)
+    typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-The water becomes still..-", 0.05)
+    time.sleep(1.5)
+    typewriter(Style.BRIGHT + Fore.LIGHTMAGENTA_EX +"Diana: swim until...your doom.", 0.05)
+    time.sleep(1.5)
 
-typewriter("-A red warping pulse reveals chains made from water around diana's hands and head connecting to the lake-", 0.05)
+print(Style.RESET_ALL)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-A red warping pulse reveals chains made from water around diana's hands and head connecting to the lake-", 0.05)
 time.sleep(1.5)
-typewriter("Diana: How did you make me do that.", 0.05)
+typewriter(Style.BRIGHT + Fore.LIGHTMAGENTA_EX +"Diana: How did you make me do that.", 0.05)
 time.sleep(1.5)
-typewriter("-A hooded figure steps out from behind the willow tree-", 0.05)
+print(Style.RESET_ALL)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-A hooded figure steps out from behind the willow tree-", 0.05)
 time.sleep(1.5)
-typewriter("Hooded Figure: You may be the Goddess of Magic. \nbut not the Goddess of mine. \nYou can go now, Little Witch ;)", 0.05)
+typewriter(Style.BRIGHT + Fore.LIGHTBLACK_EX +"Hooded Figure: You may be the Goddess of Magic. \nbut not the Goddess of mine. \nYou can go now, Little Witch ;)", 0.05)
 time.sleep(1.5)
-typewriter("Diana: Where are my sisters", 0.05)
+typewriter(Style.BRIGHT + Fore.LIGHTMAGENTA_EX + "Diana: Where are my sisters", 0.05)
 time.sleep(1.5)
-typewriter("Hooded Figure: You get them, when I say.", 0.05)
+typewriter(Style.BRIGHT + Fore.LIGHTBLACK_EX +"Hooded Figure: You get them, when I say.", 0.05)
 time.sleep(1.5)
-typewriter("-The hooded figure waves their hand and the chains disperse back into water-", 0.05)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-The hooded figure waves their hand and the chains disperse back into water-", 0.05)
 time.sleep(1.5)
-typewriter(f"Hooded Figure: Now Go, and you will not mention a word to {Player}", 0.05)
+typewriter(Style.BRIGHT + Fore.LIGHTBLACK_EX +f"Hooded Figure: Now Go, and you will not mention a word to {Player}", 0.05)
 time.sleep(1.5)
-typewriter("-The Hooded figure disappears in ashy glowing mist -", 0.05)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-The Hooded figure disappears in ashy glowing mist -", 0.05)
 
 
 
-typewriter("-The light from the surface disappears, you form a ball of light in your hand to light the way-", 0.05)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-The light from the surface disappears, you form a ball of light in your hand to light the way-", 0.05)
 time.sleep(1.5)
-typewriter("-You swim into the caverns underwater and you see a women, sitting on the rock bed-", 0.05)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-You swim into the caverns underwater and you see a women, sitting on the rock bed-", 0.05)
 time.sleep(1.5) 
-typewriter("-you swim forward to her and reach for her shoulder to check if she's ok-", 0.05)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-you swim forward to her and reach for her shoulder to check if she's ok-", 0.05)
 time.sleep(0.5)
-typewriter("-The necklace Hecate apparently allows you to breathe underwater-", 0.05)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-The necklace Hecate apparently allows you to breathe underwater-", 0.05)
 time.sleep(1.5)
-typewriter("Hey are you-", 0.05)
+print(Style.RESET_ALL)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"Hey are you-", 0.05)
 typewriter("-Her hand grabs yours with astonishing strength and she launches you towards the cave wall -", 0.05)
 time.sleep(1.5)
 
@@ -340,7 +356,7 @@ typewriter(Style.BRIGHT + Fore.LIGHTGREEN_EX + f"\n Her health is now {Scylla_He
 time.sleep(1.5)
 
 print(Style.RESET_ALL)
-typewriter("You literally threw me into a wall and literally tried to rob me, maybe you deserve how witches treated you.", 0.05)
+typewriter("You threw me into a wall and literally tried to rob me, maybe you deserve how witches treated you.", 0.05)
 time.sleep(1.5)
 typewriter("and who the hell- are you.", 0.05)
 time.sleep(1.5)
@@ -358,9 +374,9 @@ typewriter("""
                                                                      ░░░░▓▒▒▓░  ░░ ░░░░░░░▓░              
                                                                     ▒░░░░▒     ▒ ░▒░    ░░░▒▓▒░           
                                                   ░░▒▒░░░░  ░░░░░░░▒░░▒▒      ▒░▒▒    ░░▒░   ░░            
-                                                 ░░░░░▒▒▒▒▒▒▒░░▒░░░░▒▒░   ░░░░ ░▓░░░ ░░ ░▒   ▒░░           
-                                         ░░  ░░░░░░░░     ░▒░░░░▒▒▒▒▒▒░░░▒░░▒ ░▒▒▒░░░▓▒░░░░░▒▒▒           
-                                       ░░░░░░▒░        ░▒░ ░░░▒▒░           ░ ▒▓░░░░░▒                    
+                                                ░░░░░▒▒▒▒▒▒▒░░▒░░░░▒▒░   ░░░░ ░▓░░░ ░░ ░▒   ▒░░           
+                                            ░░░░░░░░     ░▒░░░░▒▒▒▒▒▒░░░▒░░▒ ░▒▒▒░░░▓▒░░░░░▒▒▒           
+                                        ░░░░░░▒░        ░▒░ ░░░▒▒░           ░ ▒▓░░░░░▒                    
                                        ░░░▒▒          ▓  ░▒▒░              ░░░▒▒     ░▒                   
                                     ░ ░░▒▒▒  ░░▒▒░░░░▒░ ░▒   ▒▒░▒▒▒        ░ ░▓▒░▒▒▓▒ ░░                  
                                    ░ ░░▒▓░ ░▒░░▒▒  ▒▒░ ▒▒  ░▒░░░▒          ▒░░▒     ▓░░░                  
@@ -389,13 +405,13 @@ typewriter("""
                           ▒░▓▓▒░▒░▒▒░▒▒▒▒░▒▓▒▒▒░░▓▒                                                       
                          ▒░▒▒░▓▒▒░▒▒░░▒▒▒▒░▒██▓▒░▒                                                        
                          ░▒▓  ▒░░▒▒░▒▒▒░▒▒░▒█░░▓▒▓                                                        
-                         ░░▒  ░▒▒░░░░░░░░▒▒█▓ ▓█▒▒                                                        
+                         ░   ░▒▒░░░░░░░░▒▒█▓ ▓█▒▒                                                        
                                 ▓▒▒░░░░░░░░▓▓░░▒                                                          
                                    ▒▓▒▒░▒░░░ ▒░                                                           
                                     ▒▓▒▒░░░░░░░▒▒                                                         
                                      ▓▓▒▒░░░░▒░░░░▒▒                                                      
                                     ░▒░░░░░  ░▒░░▒░░▓▒░░                                                  
-                                ░░░▓▒▒░░░░░▒▒░░▓░░░░░▓▒░░▒▒▓▓                                             
+                                ░░░▓▒▒░░░░░▒▒░░▓░░░░░▓▒░░▒▒▓                                             
                               ▒▒▓▒░░░░░░░░░░░▒░░▒▒▒▒░▒▒░░░░░▓                                             
                             ░▓▒░░░░░░░▒▒░░░░▒▒░░░▒▒░░▒▒░▒▓▓▒▓                                             
                            ▒░░░▒▒▓▓▒▒▒▒▓░░░░░▒░ ░▒▒▒░▓▓▒▒░░▒▓▒                                            
@@ -416,9 +432,9 @@ typewriter("""
       ░▒                   ▒▒▒░   ░▒                                                                      
                            ░▓▒░░  ░▒       ░▒▒░░░▒░░▒                                                     
                             ▒▒░    ░   ░▓░ ░  ░░░░░░░░▒                                                   
-                            ░▒░░░   ▒▒▒░░░░░▒▒▒▓▓▒░ ░░░                                                   
+                            ░▒░░░   ▒▒▒░░░░░▒   ▓▓▒░ ░░░                                                   
                               ▒░░ ░░░ ░▒▒▒▒     ▒░ ░░░▒                                                   
-                               ▒░░░  ░  ░░ ░ ░░░  ░░░░                                                    
+                               ▒░░░  ░  ░░    ░░  ░░░░                                                    
                                 ░▒▒░░░░░  ░  ░ ░░░░░                                                      
                                 ░░░▒▒▒▒▒░░░░░░░▒░                                                         
                                 ▒░░░▒▒                       ░░░▒▒▒▒░░░                                   
@@ -433,5 +449,6 @@ typewriter("""
                                    ░░▒▒▒▒▒░░░░░░░░░▒▒▒▒▒░       ░▒▒░ ░ ░▒▒                                
                              ░░▒░░░                    ░░░░░░▒░▒▒▒▒░░░                                    
                          ░▒▒░                                                                             
-                      ░▒░ """,0.0000001)
+                        ░ """,0.0000001)
 
+typewriter(Style.BRIGHT + Fore.LIGHTGREEN_EX + f"\nQUICK, choose a power\nPlease pick between 1-4", 0.01)
