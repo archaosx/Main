@@ -2,17 +2,6 @@ from MAINCOLLYPROJECT import typewriter
 from colorama import Fore, Style
 import random
 import time
-class Character:
-    def __init__(self, name, hp, damage, defence, powers) -> None:
-       self.name = name
-       self.hp = hp
-       self.max_hp = hp
-       self.damage = damage
-       self.defence = defence
-       self.powers = powers
-
-    def is_alive(self):
-        return self.hp > 0
 
 # different abilities for the player | these are their weakened stats, their power is returned during the revelation midbattle
 Player_Powers = {
@@ -57,59 +46,55 @@ Scylla_Powers ={
     1: {
         "name": "Tidal Uproar",
         "damage_range": (60, 90),
-        "desc": "A blast of magic"},
+        "desc": "The water is your enemy!"},
     2: {
-        "name": "Tidal Uproar",
-        "damage_range": (60, 90),
-        "desc": "A blast of magic"},
+        "name": "Bite",
+        "damage_range": (60, 100),
+        "desc": "RUN BEFORE SHE RIPS YOU APART!"},
     3: {
-        "name": "Tidal Uproar",
-        "damage_range": (60, 90),
-        "desc": "A blast of magic"},
+        "name": "Tail Slam",
+        "damage_range": (40, 90),
+        "desc": "Slammed by your tail"},
     4: {
-        "name": "Tidal Uproar",
-        "damage_range": (60, 90),
-        "desc": "A blast of magic"},
+        "name": "Havoc",
+        "damage_range": (50, 100),
+        "desc": "Destruction"},
 }
-def take_damage(self, amount):
-        reduced = max(1,amount - self.defence)
-        self.hp -= reduced
-        typewriter(f"{self.name} takes {reduced} damage! (HP: {self.hp}/{self.max_hp})", 0.05)
-
-    def heal(self, amount):
-        self.hp =min(self.max_hp, self.hp + amount)
-        typewriter((Style.BRIGHT + Fore.LIGHTGREEN_EX + f"{self.name} regenerates {amount} HP! (HP: {self.hp}/{self.max_hp})",0.05))
-
-
-
-
-def use_power(attacker, target, choice):
-    if isinstance(choice, str) and choice.isdigit():
-        choice = int(choice)
-
-    if choice not in Player_Powers:
-        typewriter(Style.BRIGHT + Fore.LIGHTGREEN_EX + f"{Player} How does one fumble like this, you really are a basic witch.", 0.05)
-        return False
-
-    ability = Player_Powers[choice]
-    name = ability["name"]
-    desc = ability["desc"]
-    dmg_min, dmg_max = ability["damage"]
-
-    typewriter(f"\n{attacker.name} uses {name}! {desc}")
-    damage = random.randint(dmg_min, dmg_max)
-
-    if damage < 0:
-        heal_amount = abs(damage)
-        attacker.hp = min(attacker.max_hp + heal_amount)
-        typewriter(f"{attacker.name} heals for {heal_amount} HP! {attacker.hp}/{attacker.max_hp}", 0.05)
-        return True
-
-    final_damage = max (1, damage + attacker.damage - target.defence)
-    target.hp = max(0, target.hp - final_damage)
-    typewriter(f"{target.name} uses {name}! {desc}")
-
-    return True
-
-def player_turn(player, boss):
-    typewriter(f"{player.name} takes {player.damage} damage!", 0.05)
+# ==={ DARK NEREIDS }===
+Dark_Nereids ={
+    1: {
+        "name": "Siren Song",
+        "damage_range": (60, 90),
+        "desc": "DONT LISTE-, actually it's beautiful..."},
+    2: {
+        "name": "Aquatic Rage",
+        "damage_range": (60, 100),
+        "desc": "The ocean hates you!"},
+    3: {
+        "name": "Clawed Frenzy",
+        "damage_range": (40, 90),
+        "desc": "The pod advances on your soul"},
+    4: {
+        "name": "Damned Memories",
+        "damage_range": (50, 100),
+        "desc": "The screams of their victims drown you"},
+}
+# ==={ CHAOS LORD }===
+Chaos_Lord ={
+    1: {
+        "name": "Devastating Blast",
+        "damage_range": (60, 100),
+        "desc": "."},
+    2: {
+        "name": "Wailing Horde",
+        "damage_range": (60, 100),
+        "desc": "A stampede of demons"},
+    3: {
+        "name": "Clawed Frenzy",
+        "damage_range": (40, 90),
+        "desc": "The pod advances on your soul"},
+    4: {
+        "name": "Damned Memories",
+        "damage_range": (50, 100),
+        "desc": "The screams of their victims drown you"},
+}
