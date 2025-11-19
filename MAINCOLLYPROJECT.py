@@ -2,6 +2,8 @@ import sys
 from colorama import Fore, Style, init, Cursor
 import time, os, random
 import shutil
+from dir import ScyllaCombat1
+
 init(autoreset=False)
 
 for i in range(3):
@@ -106,7 +108,7 @@ def show_title():
                         ███    ███   ███    ███     ███     ███    ███   ███    ███ ███   ███
                         ███    ███   ██████████    ▄████▀   ████████▀    ███    ███  ▀█   █▀ 
                         ███    ███                                       ███    ███          
-"""
+    """
     fade_steps = [ # this flashes the title giving a lightning effect
         Style.NORMAL + Fore.LIGHTRED_EX,
         Style.DIM + Fore.LIGHTBLACK_EX,
@@ -131,19 +133,13 @@ def show_title():
         print(color + title_art)
         time.sleep(0.05)
 
-
     return title_art
+
 # Character name and Title
 typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + "What is your name, little Witch: "),0.05
 Player = input()
 typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + "What is your Title: "),0.05
 Player_Title = input()
-
-#Player_Original_Powers_ = copy.deepcopy(Player_Powers) # this will replace the weaker powers with the OG powers
-
-Scylla_Health = 600,
-Scylla_Max_Health = 600,
-
 
 init()
 typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + f"Welcome {Player}, have a fun trip back to wherever you died!\n", 0.05)
@@ -250,7 +246,6 @@ print("\nOptions")
 print("Yes. Accept the offer")
 print("No. Reject the offer")
 
-
 choice = input("\nChoose yes or no").strip().lower()
 if choice == "yes":
     print(Style.RESET_ALL)
@@ -273,7 +268,7 @@ elif choice =="no":
     time.sleep(1.5)
     typewriter(Style.BRIGHT + Fore.LIGHTMAGENTA_EX +"Diana: This will help you against the creatures down there, now Dive, Dive until down becomes up", 0.05)
     time.sleep(1.5)
-    typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ You dive into the lake, and swim into the deep abyss }-", 0.05)
+    typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ You dive into the Sea of Lost Souls, and swim into the deep abyss }-", 0.05)
     time.sleep(1.5)
     typewriter(Style.BRIGHT + Fore.LIGHTMAGENTA_EX +"Diana: swim until light becomes a simple memory", 0.05)
     time.sleep(1.5)
@@ -305,14 +300,14 @@ typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ The Hooded figure disappears in 
 time.sleep(1.5)
 
 animate_water(ascii_art_water)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ The necklace Hecate apparently allows you to breathe underwater }-", 0.05)
+time.sleep(1.5)
 typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ The light from the surface disappears, you form a ball of light in your hand to light the way }-", 0.05)
 time.sleep(1.5)
 typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ You swim into the caverns underwater and you see a women, sitting on the rock bed }-", 0.05)
 time.sleep(1.5) 
 typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ you swim forward to her and reach for her shoulder to check if she's ok }-", 0.05)
 time.sleep(0.5)
-typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ The necklace Hecate apparently allows you to breathe underwater }-", 0.05)
-time.sleep(1.5)
 print(Style.RESET_ALL)
 typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"Hey are you-", 0.05)
 typewriter("-{ Her hand grabs yours with astonishing strength and she launches you towards the cave wall }-", 0.05)
@@ -352,7 +347,6 @@ typewriter("-{ you blast her away again and she hits the rocks }-.", 0.05)
 time.sleep(1.5)
 
 # put power here
-
 
 print(Style.RESET_ALL)
 typewriter("-{ You sent her crashing int the rock causing an uproar of debris }-.", 0.05)
@@ -453,3 +447,22 @@ typewriter("""
                         ░ """,0.0000001)
 
 
+ScyllaCombat1.scylla_combat1()
+
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ You lay there, defeated, your soul beaten and bruised }-", 0.05)
+time.sleep(1.5)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ Scylla transforms into her human form, and reaches for the chain around your neck and tears it off }-", 0.05)
+time.sleep(1.5)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"Suddenly, your eyes turn into pools of red lights you feel stronger, more powerful, you feel almost like yourself again", 0.05)
+time.sleep(1.5)
+typewriter(Style.BRIGHT + Fore.LIGHTBLUE_EX + "???: ooo... someone got their magic back, I can smell it on you-.", 0.05)
+time.sleep(1.5)
+typewriter(Style.BRIGHT + Fore.LIGHTBLUE_EX + "???: this little trinket had the ability to damper your exquisite magic, you should be thanking me.", 0.05)
+time.sleep(1.5)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX + "-{ You summon a more powerful blast this time, a blast of magic so powerful it knocks her straight out of her illusions }-.", 0.05)
+time.sleep(1.5)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX + "-{ Enraged, she launches out of the dust cloud in her monstorous form }-.", 0.05)
+time.sleep(1.5)
+typewriter(Style.BRIGHT + Fore.LIGHTBLUE_EX + "???: YOU WITCHES ARE A PLAGUE, YOU MUST BE TAMED OR TAKEN OUT.", 0.05)
+time.sleep(1.5)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX + f" Round 2 ... better not loose this time... -.", 0.05)
