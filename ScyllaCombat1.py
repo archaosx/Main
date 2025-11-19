@@ -10,6 +10,7 @@ def typewriter(text, speed=0.05):
         sys.stdout.flush()
         time.sleep(speed)
     print()
+
 Player_Powers = {
     '1': {
         "name": "Repulsive Blast",
@@ -30,7 +31,7 @@ Player_Powers = {
 
     }
 # Player_Original_Powers_ = copy.deepcopy(Player_Powers) # this will replace the weaker powers with the OG powers
-Scylla_Powers ={
+Scylla_Powers = {
     1: {
         "name": "Tidal Uproar",
         "damage_range": (40, 90),
@@ -51,65 +52,53 @@ Scylla_Powers ={
         "damage_range": (60, 120),
         "desc": "Her heads frenzy you",
         "target": "player"},
-}
+    }
+def scylla_combat1():
+    player_health = 300
+    scylla_health = 700
+    while player_health > 0 and scylla_health > 0:
+        # show moves
+        typewriter(Style.BRIGHT + Fore.LIGHTRED_EX + "Your move, Little Witch...:", 0.05)
+        for key, move in Player_Powers.items():
+            typewriter(
+                Style.BRIGHT + Fore.LIGHTWHITE_EX + f"{key}) {move['name']} (damage {move['damage_range'][0]}-{move['damage_range'][1]})",
+                0.02)
+        # get valid choice
+        choice = input(Style.BRIGHT + Fore.LIGHTRED_EX + "Pick your chaos (1-4): ").strip()
+        if choice not in Player_Powers:
+            typewriter(Style.BRIGHT + Fore.LIGHTRED_EX + "Invalid choice — you fumble and lose your turn!", 0.05)
+        else:
+            # player's attack resolution
+            low, high = Player_Powers[choice]['damage_range']
+            damage = random.randint(low, high)
+            typewriter(
+                Style.BRIGHT + Fore.LIGHTGREEN_EX + f"You use {Player_Powers[choice]['name']} and deal {damage} damage!",
+                0.05)
+            scylla_health -= damage
+            if scylla_health <= 0:
+                typewriter(Style.BRIGHT + Fore.LIGHTGREEN_EX + "Scylla has been defeated! You win!", 0.05)
+                break
+            print(Style.BRIGHT + Fore.LIGHTGREEN_EX + f"Scylla HP: {scylla_health} | Your HP: {player_health}")
 
-Player_Health = 300
-Scylla_Health = 700
-while Player_Health > 0 and Scylla_Health > 0:
-    # show moves
-    typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"Your move, Little Witch...:", 0.05)
-    for key, move in Player_Powers.items():
-        typewriter(Style.BRIGHT + Fore.LIGHTWHITE_EX + f"{key}) {move['name']} (damage {move['damage_range'][0]}-{move['damage_range'][1]})",0.02)
-    # get valid choice
-    choice = input(Style.BRIGHT + Fore.LIGHTRED_EX +"Pick your chaos (1-4): ").strip()
-    if choice not in Player_Powers:
-        typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"Invalid choice — you fumble and lose your turn!",0.05)
-    else:
-        # player's attack resolution
-        low, high = Player_Powers[choice]['damage_range']
-        damage = random.randint(low, high)
-        typewriter(Style.BRIGHT + Fore.LIGHTGREEN_EX + f"You use {Player_Powers[choice]['name']} and deal {damage} damage!", 0.05)
-        Scylla_Health -= damage
-        if Scylla_Health <= 0:
-            scylla_health = 0
-            typewriter(Style.BRIGHT + Fore.LIGHTGREEN_EX + "Scylla has been defeated! You win!", 0.05)
-            break
-        print(Style.BRIGHT + Fore.LIGHTGREEN_EX +f"Scylla HP: {Scylla_Health} | Your HP: {Player_Health}")
+        # --- Scylla's turn (random choice) ---
+        boss_choice = random.choice(list(Scylla_Powers.values()))
+        bname = boss_choice['name']
+        blow, bhigh = boss_choice['damage_range']
+        bdamage = random.randint(blow, bhigh)
 
-    # --- Scylla's turn (random choice) ---
-    boss_choice = random.choice(list(Scylla_Powers.values()))
-    bname = boss_choice['name']
-    blow, bhigh = boss_choice['damage_range']
-    bdamage = random.randint(blow, bhigh)
+        # apply effect according to target
+        if boss_choice.get('target') == 'player':
+            player_health -= bdamage
+            print(f"Scylla uses {bname}! {boss_choice['desc']} You take {bdamage} damage.")
 
-    # apply effect according to target
-    if boss_choice.get('target') == 'player':
-     Player_Health -= bdamage
-     print(f"Scylla uses {bname}! {boss_choice['desc']} You take {bdamage} damage.")
+        # clamp healths and show status
+        player_health = max(0, player_health)
+        scylla_health = max(0, scylla_health)
+        print(f"After Scylla's turn — Scylla HP: {scylla_health} | Your HP: {player_health}")
+        print("-" * 40)
 
-    # clamp healths and show status
-    player_health = max(0, Player_Health)
-    scylla_health = max(0, Scylla_Health)
-    print(f"After Scylla's turn — Scylla HP: {Scylla_Health} | Your HP: {Player_Health}")
-    print("-" * 40)
+        if player_health <= 0:
+            print("You have been defeated...")
 
-    if player_health <= 0:
-        print("You have been defeated...")
-
-typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ You lay there, defeated, your soul beaten and bruised }-", 0.05)
-time.sleep(1.5)
-typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ Scylla transforms into her human form, and reaches for the chain around your neck and tears it off }-", 0.05)
-time.sleep(1.5)
-typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"Suddenly, your eyes turn into pools of red lights you feel stronger, more powerful, you feel almost like yourself again", 0.05)
-time.sleep(1.5)
-typewriter(Style.BRIGHT + Fore.LIGHTBLUE_EX + "???: ooo... someone got their magic back, I can smell it on you-.", 0.05)
-time.sleep(1.5)
-typewriter(Style.BRIGHT + Fore.LIGHTBLUE_EX + "???: this little trinket had the ability to damper your exquisite magic, you should be thanking me.", 0.05)
-time.sleep(1.5)
-typewriter(Style.BRIGHT + Fore.LIGHTRED_EX + "-{ You summon a more powerful blast this time, a blast of magic so powerful it knocks her straight out of her illusions }-.", 0.05)
-time.sleep(1.5)
-typewriter(Style.BRIGHT + Fore.LIGHTRED_EX + "-{ Enraged, she launches out of the dust cloud in her monstorous form }-.", 0.05)
-time.sleep(1.5)
-typewriter(Style.BRIGHT + Fore.LIGHTBLUE_EX + "???: YOU WITCHES ARE A PLAGUE, YOU MUST BE TAMED OR TAKEN OUT.", 0.05)
-time.sleep(1.5)
-typewriter(Style.BRIGHT + Fore.LIGHTRED_EX + f" Round 2 ... better not loose this time... -.", 0.05)
+if __name__ == "__main__":
+ scylla_combat1()
