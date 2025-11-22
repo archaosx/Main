@@ -25,9 +25,9 @@ Player_Powers = {
         "damage_range": (20, 60),
         "desc": "A blast of magic\n"},
     '4': {
-        "name": "Heal",
+        "name": "Lightning",
         "damage_range": (20, 50),
-        "desc": "You heal slower than normal\n"},
+        "desc": "Shocking innit\n"},
 
     }
 # Player_Original_Powers_ = copy.deepcopy(Player_Powers) # this will replace the weaker powers with the OG powers
