@@ -1,9 +1,9 @@
 import sys
-from colorama import Fore, Style, init, Cursor
+from colorama import Fore, Style, init
 import time, os, random
-import shutil
-from dir import ScyllaCombat1
-
+from ScyllaCombat1 import scylla_combat1
+from ScyllaCombat2 import scylla_combat2
+from ChaosLordCombat import chaos_lord_combat
 init(autoreset=False)
 
 for i in range(3):
@@ -17,30 +17,6 @@ def typewriter(text, speed=0.05):
         sys.stdout.flush()
         time.sleep(speed)
     print()
-
-def slash_animation(art, delay=0.04, slash_char='/'):
-    lines = art.strip().splitlines()
-    height = len(lines)
-    width = max(len(line) for line in lines)
-
-    term_width = shutil.get_terminal_size().columns
-
-    print("\n" * height)
-
-    for step in range(width + height):
-        print(Cursor.UP(height), end="")
-        print(Cursor.FORWARD(0), end="")
-        for y, line in enumerate(lines):
-            chars = list(line.ljust(width))
-            pos = step - y
-            if 0 <= pos < width:
-                chars[pos] = slash_char
-            line_str = "".join(chars)
-            padding = max((term_width - len(line_str)) // 2, 0)
-            print(" " * padding + line_str)
-        time.sleep(delay)
-
-
 
 ascii_art_water = [
 
@@ -67,7 +43,7 @@ ascii_art_water = [
 def clear_console():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-def animate_water(water_lines, frames=50, delay=0.2):
+def animate_water(water_lines, frames=30, delay=0.2):
     for _ in range(frames):
         clear_console()
         for line in water_lines:
@@ -111,24 +87,27 @@ def show_title():
     """
     fade_steps = [ # this flashes the title giving a lightning effect
         Style.NORMAL + Fore.LIGHTRED_EX,
-        Style.DIM + Fore.LIGHTBLACK_EX,
+        Style.DIM + Fore.BLACK,
+        Style.NORMAL + Fore.LIGHTWHITE_EX,
+        Style.NORMAL + Fore.WHITE,
+        Style.DIM + Fore.BLACK,
+        Style.BRIGHT + Fore.RED,
+        Style.NORMAL + Fore.LIGHTRED_EX,
+        Style.DIM + Fore.BLACK,
         Style.NORMAL + Fore.LIGHTWHITE_EX,
         Style.NORMAL + Fore.WHITE,
         Style.BRIGHT + Fore.RED,
         Style.NORMAL + Fore.LIGHTRED_EX,
-        Style.DIM + Fore.LIGHTBLACK_EX,
+        Style.DIM + Fore.BLACK,
         Style.NORMAL + Fore.LIGHTWHITE_EX,
         Style.NORMAL + Fore.WHITE,
+        Style.DIM + Fore.BLACK,
         Style.BRIGHT + Fore.RED,
-        Style.NORMAL + Fore.LIGHTRED_EX,
-        Style.DIM + Fore.LIGHTBLACK_EX,
-        Style.NORMAL + Fore.LIGHTWHITE_EX,
-        Style.NORMAL + Fore.WHITE,
-        Style.BRIGHT + Fore.RED,
-        Style.BRIGHT + Fore.LIGHTRED_EX
+        Style.BRIGHT + Fore.LIGHTRED_EX,
+        Style.DIM + Fore.BLACK,
     ]
 
-    for color in fade_steps + fade_steps[::-1]:
+    for color in fade_steps + fade_steps[::-5]:
         os.system('cls' if os.name == 'nt' else 'clear')
         print(color + title_art)
         time.sleep(0.05)
@@ -149,7 +128,7 @@ for i in range(210):
     print(random.choice(stars).rjust(random.randint(0, 140)))
     time.sleep(0.01)# this repeats the chosen symbols at the selected range
 
-slash_animation(show_title())
+show_title()
 
 
 print(Style.RESET_ALL)
@@ -196,14 +175,14 @@ typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + "and you are in Tierra de los Muer
 time.sleep(1.5)
 typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + "Under the Weeping Willow, your unconscious soul lays rest.", 0.05)
 time.sleep(1.5)
-typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + "-footsteps walk along the mirrored lake, floating off over you-", 0.05)
+typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + "-{ footsteps walk along the mirrored lake, floating off over you }-", 0.05)
 time.sleep(1.5)
-typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + "-A voice...divine and calm-", 0.05)
+typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + "-{ A voice...divine and calm }-", 0.05)
 time.sleep(1.5)
 typewriter (Style.BRIGHT + Fore.LIGHTMAGENTA_EX + f"Being: {Player}...Its time to wake up...", 0.05)
 time.sleep(1.5)
-typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + "-you wake up in a daze, you eyes wander up as you look at this radient figure before you-", 0.05)
-typewriter(Style.BRIGHT + Fore.LIGHTRED_EX + "-Her eyes glow with light and her skin looks as if your staring into the cosmos itself-", 0.05)
+typewriter (Style.BRIGHT + Fore.LIGHTRED_EX + "-{ you wake up in a daze, you eyes wander up as you look at this radient figure before you }-", 0.05)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX + "-{ Her eyes glow with light and her skin looks as if your staring into the cosmos itself }-", 0.05)
 time.sleep(1.5)
 print(Style.RESET_ALL)
 typewriter("Who are you?", 0.05)
@@ -219,13 +198,11 @@ typewriter(Player + ": How do I know your Hecate, where are the other two.", 0.0
 time.sleep(1.5)
 typewriter(Style.BRIGHT + Fore.LIGHTMAGENTA_EX +"Diana: They may not be present, but they are always with me")
 time.sleep(1.5)
-typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ She bends perception as she comes closer, shrinking in size. She holds are arms }-")
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ She holds your hands in her's }-")
 time.sleep(1.5)
-typewriter(Style.BRIGHT + Fore.LIGHTMAGENTA_EX +"Diana: You can feel that can't you..")
+typewriter(Style.BRIGHT + Fore.LIGHTMAGENTA_EX +"Diana: You can feel that can't you..you can trust me", 0.1)
 time.sleep(1.5)
-typewriter(Style.BRIGHT + Fore.LIGHTMAGENTA_EX +"You can trust me")
-time.sleep(1.5)
-typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ You feel a connection, like a breeze blowing on your soul }-")
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ You feel a connection, like a breeze blowing on your soul }-",0.07)
 time.sleep(1.5)
 print(Style.RESET_ALL)
 typewriter(Player + ": Why are you here?" )
@@ -300,7 +277,7 @@ typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ The Hooded figure disappears in 
 time.sleep(1.5)
 
 animate_water(ascii_art_water)
-typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ The necklace Hecate apparently allows you to breathe underwater }-", 0.05)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ The necklace Hecate gifted you apparently allows you to breathe underwater }-", 0.05)
 time.sleep(1.5)
 typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ The light from the surface disappears, you form a ball of light in your hand to light the way }-", 0.05)
 time.sleep(1.5)
@@ -309,10 +286,10 @@ time.sleep(1.5)
 typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ you swim forward to her and reach for her shoulder to check if she's ok }-", 0.05)
 time.sleep(0.5)
 print(Style.RESET_ALL)
-typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"Hey are you-", 0.05)
+typewriter("Hey are you-", 0.05)
 typewriter("-{ Her hand grabs yours with astonishing strength and she launches you towards the cave wall }-", 0.05)
 time.sleep(1.5)
-typewriter(Style.BRIGHT + Fore.LIGHTGREEN_EX +"You are hurtled into the save wall, your wounded but you heal quickly", 0.05)
+typewriter(Style.BRIGHT + Fore.LIGHTGREEN_EX +"You are hurtled into the cave wall, your wounded but you heal quickly", 0.05)
 time.sleep(0.6)
 typewriter(Style.BRIGHT + Fore.LIGHTGREEN_EX +"Your Health is back to 300", 0.05)
 time.sleep(0.6)
@@ -328,26 +305,6 @@ typewriter("And a rather powerful one here, but somethings dimming your flavor",
 print(Style.RESET_ALL)
 typewriter("-You summon a repulsive blast straight into her stomach and send her flying through the air-", 0.05)
 time.sleep(1.5)
-
-# put power here
-
-print(Style.RESET_ALL)
-typewriter("-{ A blur whizzes through the water and warps itself at the entrance creating a current that launches you backwards into her grasp }-", 0.05)
-time.sleep(1.5)
-typewriter(Style.BRIGHT + Fore.LIGHTBLUE_EX +"???: First off all. OW. Second, How rude of you, you witches treat everyone so terribly.", 0.05)
-time.sleep(1.5)
-print(Style.RESET_ALL)
-typewriter("-{ She notices the chain around your neck }-", 0.05)
-time.sleep(1.5)
-typewriter(Style.BRIGHT + Fore.LIGHTBLUE_EX + "???: This is lovely, mind if I take it for your insubordination -she reaches for it-.", 0.05)
-time.sleep(1.5)
-# add combat option
-print(Style.RESET_ALL)
-typewriter("-{ you blast her away again and she hits the rocks }-.", 0.05)
-time.sleep(1.5)
-
-# put power here
-
 print(Style.RESET_ALL)
 typewriter("-{ You sent her crashing int the rock causing an uproar of debris }-.", 0.05)
 time.sleep(1.5)
@@ -361,7 +318,7 @@ typewriter("-{ The cavern is much bigger now that you actually look around, you 
 time.sleep(1.5)
 typewriter("-{ 2 glowing dots appear in the dark like eyes, \n then another 10 }-", 0.05)
 time.sleep(1.5)
-typewriter("-{ The creature comes forward, a 6 headed hydra like creature with tons of tentacles charges forward }-", 0.05)
+typewriter("-{ The next second a barbaric monster emerges, 6 headed beast, with the heads of massive demonic dogs}-", 0.05)
 time.sleep(1.5)
 typewriter("""
                                                                           ░░        ░░░  ░▒▒▓▓░           
@@ -447,15 +404,13 @@ typewriter("""
                         ░ """,0.0000001)
 
 
-ScyllaCombat1.scylla_combat1()
+scylla_combat1()
 
 typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ You lay there, defeated, your soul beaten and bruised }-", 0.05)
 time.sleep(1.5)
 typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ Scylla transforms into her human form, and reaches for the chain around your neck and tears it off }-", 0.05)
 time.sleep(1.5)
 typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"Suddenly, your eyes turn into pools of red lights you feel stronger, more powerful, you feel almost like yourself again", 0.05)
-time.sleep(1.5)
-typewriter(Style.BRIGHT + Fore.LIGHTBLUE_EX + "???: ooo... someone got their magic back, I can smell it on you-.", 0.05)
 time.sleep(1.5)
 typewriter(Style.BRIGHT + Fore.LIGHTBLUE_EX + "???: this little trinket had the ability to damper your exquisite magic, you should be thanking me.", 0.05)
 time.sleep(1.5)
@@ -466,3 +421,105 @@ time.sleep(1.5)
 typewriter(Style.BRIGHT + Fore.LIGHTBLUE_EX + "???: YOU WITCHES ARE A PLAGUE, YOU MUST BE TAMED OR TAKEN OUT.", 0.05)
 time.sleep(1.5)
 typewriter(Style.BRIGHT + Fore.LIGHTRED_EX + f" Round 2 ... better not loose this time... -.", 0.05)
+
+scylla_combat2()
+
+print(Style.RESET_ALL)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ She falls to the ground weak.... }-", 0.05)
+time.sleep(1.5)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ You swim to her }-", 0.05)
+time.sleep(1.5)
+typewriter(" Your Scylla, the nymph cursed by Circe. It explains the hatred towards witches", 0.05)
+time.sleep(1.5)
+typewriter(Style.BRIGHT + Fore.LIGHTBLUE_EX + "Scylla: What good is it to you Witch, kill me like the other one did", 0.05)
+time.sleep(1.5)
+typewriter("How did you die, your immortal", 0.05)
+time.sleep(1.5)
+typewriter(Style.BRIGHT + Fore.LIGHTBLUE_EX +"I dont know... just finish me off. do it. DO IT!", 0.05)
+time.sleep(1.5)
+print(Style.RESET_ALL)
+typewriter("Not all witches are like them, for centuries you've been looking for a way to end the curse. I can help!", 0.05)
+time.sleep(1.5)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ You place your hand on one of her heads }-", 0.05)
+time.sleep(1.5)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ Your siphoning her curse..... }-", 0.05)
+time.sleep(1.5)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ In a flash of white, Scylla reforms back into her beautiful self }-", 0.05)
+time.sleep(1.5)
+typewriter(Style.BRIGHT + Fore.LIGHTBLUE_EX +"Scylla: -Thank...Thank you, ive been terrorised by this curse for millennia", 0.05)
+time.sleep(1.5)
+print(Style.RESET_ALL)
+typewriter("You can thank me by helping me reach the light of life", 0.05)
+time.sleep(1.5)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ she nods and you both swim out of the cavern into the shores of the sea of souls }-", 0.05)
+time.sleep(1.5)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ You stand before a mountain }-", 0.05)
+time.sleep(1.5)
+typewriter(Style.BRIGHT + Fore.LIGHTBLUE_EX +"Scylla: We have to climb out of Tierra de los Muertos", 0.05)
+time.sleep(1.5)
+print(Style.RESET_ALL)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ Your too weak to fly right now, your magic is tainted by death }- ", 0.05)
+time.sleep(1.5)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ You both ascend to the top, a tough climb but you faced worse just minutes ago }-", 0.05)
+time.sleep(1.5)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ Scylla helps you up, and you stand before the mountain peak utter stunned }-", 0.05)
+time.sleep(1.5)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ Utter chaos, silent screams of souls being ripped to shreds and pieced back together falling apart and repeat }-", 0.05)
+time.sleep(1.5)
+print(Style.RESET_ALL)
+typewriter("What the f-", 0.05)
+time.sleep(1.5)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ Suddenly a blast of magic hits scylla and she dies instantly in bloody execution }-", 0.05)
+time.sleep(1.5)
+typewriter(Style.BRIGHT + Fore.LIGHTRED_EX +"-{ A hooded figure charges at you with super human speed, grabs your neck and lifts you up }-", 0.05)
+time.sleep(1.5)
+typewriter('''                                                                                            
+          .......................................................................          
+          ................................:----:.................................          
+          ...............................~::---~~:...............................          
+          ..............................++^---~~==..............::...............          
+          .............................-]@@@#>===+-..............................          
+          .....:......................+{%@@@@@%>==*-.............................          
+          ...........................=%%@@%}}}#@}>+++~...........................          
+          ..........................:#%%{##%#%#{{](+*++..........................          
+          ............................*^<}})>^^^<)**(]^~.........................          
+          .........................:<^^<)*(<}]<^**+))><*:........................          
+          ........................:(##[(<^**^^^**^[}[}}(^.............:..........          
+          .......................:^{)*=+<<<(<>>>][[][](<({*......:...............          
+          .......................~-*+~~~~~^)(<*+>**+++**<]>~^....................          
+          .....................~-.~=~~~-~*({{#%]*+++++++***+=-...................          
+          ::.....:...........+>...+~~~--<%%@@@%@@{<^^^^++***+++++*+-::-=^<<<<>*~:          
+          ........................=-~-+{}###{%%%@@#%@@@@@@[](((()))<>><<<))))<^*+          
+          .......................-~~<%@#[}[())]###{#@#%@@@{(())))))))<<<))))<-..-          
+          ......................:+(@@@%#](([[[[(}###@@%%%{}())))))))))<)<))<<*:..          
+          .......:.........::..:=]@@@#@{]((((}##{#%%%@@%%}[)<<<<<<<<<<<<<<<<<^...          
+          .....:...............=<[}#{[](>^>[{}][{##{%@@%%{[)<<<<<<<<<>^+-:.~=:...          
+          .....:..............->)}#%}[)<^^<{{{](][{%@@@%{#}())))))<<<<>*=:.......          
+          :..................:~>[%%{()^>*>)<)[[]][}{%%%{[%%])))))))<<<>-.........          
+          ::::....:.........:-*<]%@%#](>^()<)]#[[}{{%%@#%%%})))))))<<^-..........          
+          --::::::..........:+><]%%@@{(>]()))[%#}}}#@{{][}%#())))))<>=:..........          
+          -------::::::::....~^<[[)[%%(([(((][%@}}}%%[)))[{]))))))))<+~--:.......          
+          ~~--~----------:::.:=>(]^<#{]#((]]][%@#{{%#()))(()))))))))<<>^+:...:...          
+          ~~~~~~~~~~~~~-----::-^>>++>]##}]][[}%@%{}{})))))))))))))))<<>*--------:          
+          ~~~~~~~~~~~~~~~~~~--=*^*++)[##}[[[{{%@@#{{[)<<<<<<<))))))<<<+~~~~~~~~~~          
+          ====++++==~~~~~~~~~~+*^*+^))[{}}{{{{%@@%%%{)<<<<<<<))))))<<+~~~~~~~~~~~          
+          >>^**++++=~~=~~~~~~=+^**^<<)){##{{###@@@@@%)<<<<<<<)))))))^~~~=========          
+          <<<)<<<<>*+~=+=====+*^^**><<)[{{{#{##%@@@%)><<<<<<<)<^^<<^+=========++=          
+          ))))))<))))>^^=====+**^^^*~:^}{%@%%@%%@%@{==^<<<<<<<<*++++====++++*^>>>          
+          ))))))((()))<*=====+++^^^^^~.~)##%%#}@@%@).:+>><<>>>>^++++===+***^<)(((          
+          )))((((())))))<>*+=+=~*^^^-...*}}{#}^@@@%:..-*^~:-==++======+<>>)]]]([[          
+          ))((((]]((((((()<>^++++*=--:..:]}{#]<%%%~...:--:.:-~======+<]]]][[}}}}}          
+          ((((]]]]]]]]](())<>*+++++==~~-:>[}})(%#>.....:::::-~====+(}}{{{{{{{{}}}          
+          ]]](]]]][[[[]]((()<^++++++++++++([})[{[=:--::::--~~~===^[{{{{#####{{{}}          
+          }}}}{}[[[[[[[[[]](<>**++*+++++++>[[}}[(=~~-----~~======>[[[}#%#####{{}}          
+          }}}{{{{}[]]][[](()<<><>^*+******^[[[}])+~~~~~~=====++^)][}}{}######{}}{          
+          }}}}{}}}{]((((()())<<<)>^**+****^[}}[))*=========+++>)(][}[}}}{{##{{}{{          
+          @#@@#{}}{#])<><<<<<<)))<^^^^^^^^<[}})<<^^^^^*^><))<^<<))(][][}{{####{{}          
+          %%@@{}{}]((((((<^^^**+^***+**^^^>{{(<>++^<>>^><)()<<<))))(]([}}[[[([}[[          
+          @@%@@@%}]((((((()<<](>>^^^^>>>^^]%@%}+=+>>*++++*)<><><><>)]]][]]]]]]]]]          
+          @@@{{{}[}[]][((())^*^^****++****++*^>^**+****^^>>>>>>>>)][][[[]]]](](()          
+          @%%%{{}}[()[[][](()<<<<<<)>+*+++==~~=++***^^>>>><>^^^^^>(][[[]]]]()<)))          
+          }[[[[[][{{}(}}}}}}[(^^>>^>>^*+++***^^^^**^^^^^>><<)(((((]]]]]((((<***^> ''', 0.00005)
+
+if __name__ == "__main__":
+    chaos_lord_combat()
